@@ -1,0 +1,27 @@
+16:46:47 **** Incremental Build of configuration Debug for project Master_two_mt6835_set_zero_and_mem ****
+make -j4 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m7 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32H723xx -c -I../Core/Inc -I../Drivers/STM32H7xx_HAL_Driver/Inc -I../Drivers/STM32H7xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32H7xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv5-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c: In function 'main':
+../Core/Src/main.c:163:38: warning: unused variable 'radian_angle_2' [-Wunused-variable]
+  163 |         float radian_angle_1 = 0.0f, radian_angle_2 = 0.0f;
+      |                                      ^~~~~~~~~~~~~~
+../Core/Src/main.c:163:15: warning: unused variable 'radian_angle_1' [-Wunused-variable]
+  163 |         float radian_angle_1 = 0.0f, radian_angle_2 = 0.0f;
+      |               ^~~~~~~~~~~~~~
+../Core/Src/main.c:162:35: warning: unused variable 'raw_angle_2' [-Wunused-variable]
+  162 |         uint32_t raw_angle_1 = 0, raw_angle_2 = 0;
+      |                                   ^~~~~~~~~~~
+../Core/Src/main.c:162:18: warning: unused variable 'raw_angle_1' [-Wunused-variable]
+  162 |         uint32_t raw_angle_1 = 0, raw_angle_2 = 0;
+      |                  ^~~~~~~~~~~
+arm-none-eabi-gcc -o "Master_two_mt6835_set_zero_and_mem.elf" @"objects.list"   -mcpu=cortex-m7 -T"D:\For MT6835 Code\Master_two_mt6835_set_zero_and_mem\STM32H723ZGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="Master_two_mt6835_set_zero_and_mem.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv5-d16 -mfloat-abi=hard -mthumb -u _printf_float -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: Master_two_mt6835_set_zero_and_mem.elf
+ 
+arm-none-eabi-size  Master_two_mt6835_set_zero_and_mem.elf 
+arm-none-eabi-objdump -h -S Master_two_mt6835_set_zero_and_mem.elf  > "Master_two_mt6835_set_zero_and_mem.list"
+   text	   data	    bss	    dec	    hex	filename
+  38504	    476	   2188	  41168	   a0d0	Master_two_mt6835_set_zero_and_mem.elf
+Finished building: default.size.stdout
+ 
+Finished building: Master_two_mt6835_set_zero_and_mem.list
+ 

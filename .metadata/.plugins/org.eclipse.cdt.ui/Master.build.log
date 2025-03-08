@@ -1,0 +1,17 @@
+16:41:20 **** Incremental Build of configuration Debug for project Master ****
+make -j4 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m7 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32H723xx -c -I../Core/Inc -I../Drivers/STM32H7xx_HAL_Driver/Inc -I../Drivers/STM32H7xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32H7xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv5-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "Master.elf" @"objects.list"   -mcpu=cortex-m7 -T"D:\For MT6835 Code\Display_Rtos.zip_expanded\Master\STM32H723ZGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="Master.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv5-d16 -mfloat-abi=hard -mthumb -u _printf_float -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: Master.elf
+ 
+arm-none-eabi-size  Master.elf 
+arm-none-eabi-objdump -h -S Master.elf  > "Master.list"
+   text	   data	    bss	    dec	    hex	filename
+  56540	    732	   2532	  59804	   e99c	Master.elf
+Finished building: default.size.stdout
+ 
+Finished building: Master.list
+ 
+
+16:41:22 Build Finished. 0 errors, 0 warnings. (took 1s.423ms)
+

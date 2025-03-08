@@ -1,0 +1,5 @@
+../Core/Src/mt6835_stm32_spi_port.c:24:13:mt6835_cs_control	16	static
+../Core/Src/mt6835_stm32_spi_port.c:33:13:mt6835_spi_send	24	static
+../Core/Src/mt6835_stm32_spi_port.c:42:13:mt6835_spi_recv	24	static
+../Core/Src/mt6835_stm32_spi_port.c:51:13:mt6835_spi_send_recv	32	static
+../Core/Src/mt6835_stm32_spi_port.c:75:12:mt6835_stm32_spi_port_init	16	static

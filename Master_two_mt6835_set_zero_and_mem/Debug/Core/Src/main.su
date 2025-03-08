@@ -1,0 +1,7 @@
+../Core/Src/main.c:63:5:_write	24	static
+../Core/Src/main.c:77:13:mt6835_cs_control	16	static
+../Core/Src/main.c:87:13:mt6835_cs2_control	16	static
+../Core/Src/main.c:97:13:mt6835_spi_send_recv	32	static
+../Core/Src/main.c:119:5:main	32	static
+../Core/Src/main.c:223:6:SystemClock_Config	120	static
+../Core/Src/main.c:284:6:Error_Handler	4	static,ignoring_inline_asm

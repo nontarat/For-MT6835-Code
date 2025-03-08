@@ -1,0 +1,17 @@
+10:09:35 **** Incremental Build of configuration Debug for project mt6835_nono ****
+make -j4 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m7 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32H723xx -c -I../Core/Inc -I../Drivers/STM32H7xx_HAL_Driver/Inc -I../Drivers/STM32H7xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32H7xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv5-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "mt6835_nono.elf" @"objects.list"   -mcpu=cortex-m7 -T"D:\For MT6835 Code\mt6835_nono\STM32H723ZGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="mt6835_nono.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv5-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: mt6835_nono.elf
+ 
+arm-none-eabi-size  mt6835_nono.elf 
+arm-none-eabi-objdump -h -S mt6835_nono.elf  > "mt6835_nono.list"
+   text	   data	    bss	    dec	    hex	filename
+  29900	    364	   2188	  32452	   7ec4	mt6835_nono.elf
+Finished building: default.size.stdout
+ 
+Finished building: mt6835_nono.list
+ 
+
+10:09:37 Build Finished. 0 errors, 0 warnings. (took 2s.19ms)
+
