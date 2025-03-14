@@ -1,0 +1,642 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>MT6835MasterOne.md</title>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+
+<style>
+/* https://github.com/microsoft/vscode/blob/master/extensions/markdown-language-features/media/markdown.css */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+body {
+	font-family: var(--vscode-markdown-font-family, -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif);
+	font-size: var(--vscode-markdown-font-size, 14px);
+	padding: 0 26px;
+	line-height: var(--vscode-markdown-line-height, 22px);
+	word-wrap: break-word;
+}
+
+#code-csp-warning {
+	position: fixed;
+	top: 0;
+	right: 0;
+	color: white;
+	margin: 16px;
+	text-align: center;
+	font-size: 12px;
+	font-family: sans-serif;
+	background-color:#444444;
+	cursor: pointer;
+	padding: 6px;
+	box-shadow: 1px 1px 1px rgba(0,0,0,.25);
+}
+
+#code-csp-warning:hover {
+	text-decoration: none;
+	background-color:#007acc;
+	box-shadow: 2px 2px 2px rgba(0,0,0,.25);
+}
+
+body.scrollBeyondLastLine {
+	margin-bottom: calc(100vh - 22px);
+}
+
+body.showEditorSelection .code-line {
+	position: relative;
+}
+
+body.showEditorSelection .code-active-line:before,
+body.showEditorSelection .code-line:hover:before {
+	content: "";
+	display: block;
+	position: absolute;
+	top: 0;
+	left: -12px;
+	height: 100%;
+}
+
+body.showEditorSelection li.code-active-line:before,
+body.showEditorSelection li.code-line:hover:before {
+	left: -30px;
+}
+
+.vscode-light.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.15);
+}
+
+.vscode-light.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.40);
+}
+
+.vscode-light.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-dark.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.4);
+}
+
+.vscode-dark.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.60);
+}
+
+.vscode-dark.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-high-contrast.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 160, 0, 0.7);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 160, 0, 1);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+img {
+	max-width: 100%;
+	max-height: 100%;
+}
+
+a {
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+a:focus,
+input:focus,
+select:focus,
+textarea:focus {
+	outline: 1px solid -webkit-focus-ring-color;
+	outline-offset: -1px;
+}
+
+hr {
+	border: 0;
+	height: 2px;
+	border-bottom: 2px solid;
+}
+
+h1 {
+	padding-bottom: 0.3em;
+	line-height: 1.2;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+}
+
+h1, h2, h3 {
+	font-weight: normal;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+table > thead > tr > th {
+	text-align: left;
+	border-bottom: 1px solid;
+}
+
+table > thead > tr > th,
+table > thead > tr > td,
+table > tbody > tr > th,
+table > tbody > tr > td {
+	padding: 5px 10px;
+}
+
+table > tbody > tr + tr > td {
+	border-top: 1px solid;
+}
+
+blockquote {
+	margin: 0 7px 0 5px;
+	padding: 0 16px 0 10px;
+	border-left-width: 5px;
+	border-left-style: solid;
+}
+
+code {
+	font-family: Menlo, Monaco, Consolas, "Droid Sans Mono", "Courier New", monospace, "Droid Sans Fallback";
+	font-size: 1em;
+	line-height: 1.357em;
+}
+
+body.wordWrap pre {
+	white-space: pre-wrap;
+}
+
+pre:not(.hljs),
+pre.hljs code > div {
+	padding: 16px;
+	border-radius: 3px;
+	overflow: auto;
+}
+
+pre code {
+	color: var(--vscode-editor-foreground);
+	tab-size: 4;
+}
+
+/** Theming */
+
+.vscode-light pre {
+	background-color: rgba(220, 220, 220, 0.4);
+}
+
+.vscode-dark pre {
+	background-color: rgba(10, 10, 10, 0.4);
+}
+
+.vscode-high-contrast pre {
+	background-color: rgb(0, 0, 0);
+}
+
+.vscode-high-contrast h1 {
+	border-color: rgb(0, 0, 0);
+}
+
+.vscode-light table > thead > tr > th {
+	border-color: rgba(0, 0, 0, 0.69);
+}
+
+.vscode-dark table > thead > tr > th {
+	border-color: rgba(255, 255, 255, 0.69);
+}
+
+.vscode-light h1,
+.vscode-light hr,
+.vscode-light table > tbody > tr + tr > td {
+	border-color: rgba(0, 0, 0, 0.18);
+}
+
+.vscode-dark h1,
+.vscode-dark hr,
+.vscode-dark table > tbody > tr + tr > td {
+	border-color: rgba(255, 255, 255, 0.18);
+}
+
+</style>
+
+<style>
+/* Tomorrow Theme */
+/* http://jmblog.github.com/color-themes-for-google-code-highlightjs */
+/* Original theme - https://github.com/chriskempson/tomorrow-theme */
+
+/* Tomorrow Comment */
+.hljs-comment,
+.hljs-quote {
+	color: #8e908c;
+}
+
+/* Tomorrow Red */
+.hljs-variable,
+.hljs-template-variable,
+.hljs-tag,
+.hljs-name,
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-regexp,
+.hljs-deletion {
+	color: #c82829;
+}
+
+/* Tomorrow Orange */
+.hljs-number,
+.hljs-built_in,
+.hljs-builtin-name,
+.hljs-literal,
+.hljs-type,
+.hljs-params,
+.hljs-meta,
+.hljs-link {
+	color: #f5871f;
+}
+
+/* Tomorrow Yellow */
+.hljs-attribute {
+	color: #eab700;
+}
+
+/* Tomorrow Green */
+.hljs-string,
+.hljs-symbol,
+.hljs-bullet,
+.hljs-addition {
+	color: #718c00;
+}
+
+/* Tomorrow Blue */
+.hljs-title,
+.hljs-section {
+	color: #4271ae;
+}
+
+/* Tomorrow Purple */
+.hljs-keyword,
+.hljs-selector-tag {
+	color: #8959a8;
+}
+
+.hljs {
+	display: block;
+	overflow-x: auto;
+	color: #4d4d4c;
+	padding: 0.5em;
+}
+
+.hljs-emphasis {
+	font-style: italic;
+}
+
+.hljs-strong {
+	font-weight: bold;
+}
+</style>
+
+<style>
+/*
+ * Markdown PDF CSS
+ */
+
+ body {
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif, "Meiryo";
+	padding: 0 12px;
+}
+
+pre {
+	background-color: #f8f8f8;
+	border: 1px solid #cccccc;
+	border-radius: 3px;
+	overflow-x: auto;
+	white-space: pre-wrap;
+	overflow-wrap: break-word;
+}
+
+pre:not(.hljs) {
+	padding: 23px;
+	line-height: 19px;
+}
+
+blockquote {
+	background: rgba(127, 127, 127, 0.1);
+	border-color: rgba(0, 122, 204, 0.5);
+}
+
+.emoji {
+	height: 1.4em;
+}
+
+code {
+	font-size: 14px;
+	line-height: 19px;
+}
+
+/* for inline code */
+:not(pre):not(.hljs) > code {
+	color: #C9AE75; /* Change the old color so it seems less like an error */
+	font-size: inherit;
+}
+
+/* Page Break : use <div class="page"/> to insert page break
+-------------------------------------------------------- */
+.page {
+	page-break-after: always;
+}
+
+</style>
+
+<script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+</head>
+<body>
+  <script>
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: document.body.classList.contains('vscode-dark') || document.body.classList.contains('vscode-high-contrast')
+          ? 'dark'
+          : 'default'
+    });
+  </script>
+<h1 id="mt6835-%E0%B9%83%E0%B8%8A%E0%B9%89%E0%B8%87%E0%B8%B2%E0%B8%99%E0%B8%A3%E0%B9%88%E0%B8%A7%E0%B8%A1%E0%B8%81%E0%B8%B1%E0%B8%9A-stm32h723-nucleo">MT6835 ใช้งานร่วมกับ STM32H723 Nucleo</h1>
+<p>มันมีไลบราลี่ 2 ชุด</p>
+<table>
+<thead>
+<tr>
+<th>.h</th>
+<th>.c</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>mt6835_stm32_spi_port.h</td>
+<td>mt6835_stm32_spi_port.c</td>
+</tr>
+<tr>
+<td>mt6835.h</td>
+<td>mt6835.c</td>
+</tr>
+</tbody>
+</table>
+<h2 id="1header-file-mt6835stm32spiporth">1.Header File (<code>mt6835_stm32_spi_port.h</code>)</h2>
+<ul>
+<li>การกำหนดค่าภายในไฟล์นี้:
+<ul>
+<li><code>MT6835_STM32_SPI_PORT_ENABLE</code>: ตัวแปรนี้ถูกกำหนดเป็น <code>1</code> เพื่อเปิดใช้งาน SPI สำหรับการติดต่อกับอุปกรณ์ <code>mt6835</code> หากกำหนดค่าเป็น <code>0</code> จะไม่ใช้งาน SPI.</li>
+</ul>
+</li>
+<li>การประกาศฟังก์ชัน:
+<ul>
+<li><code>mt6835_stm32_spi_port_init</code>: ฟังก์ชันนี้จะทำหน้าที่ในการตั้งค่าและเริ่มต้น SPI และคืนค่า pointer ที่ชี้ไปยังอ็อบเจ็กต์ <code>mt6835_t</code> ซึ่งจะใช้ในการควบคุม SPI</li>
+</ul>
+</li>
+</ul>
+<h2 id="2c-file-mt6835stm32spiportc">2.C File (<code>mt6835_stm32_spi_port.c</code>)</h2>
+<ul>
+<li>
+<p>การใช้งาน SPI:</p>
+<ul>
+<li>
+<p>ฟังก์ชันในไฟล์นี้ทำงานเกี่ยวข้องกับการควบคุม SPI และการสื่อสารผ่าน SPI ดังนี้:</p>
+<ul>
+<li>
+<p><code>mt6835_cs_control</code>: ฟังก์ชันนี้ควบคุมการตั้งค่า Chip Select (CS) โดยการตั้งค่าเป็น High หรือ Low เพื่อเลือกเปิดหรือปิดการสื่อสารกับอุปกรณ์ <code>mt6835</code> ตามสถานะที่ต้องการ (เมื่อ CS ถูกตั้งเป็น Low การสื่อสารจะเริ่มทำงาน).</p>
+</li>
+<li>
+<p><code>mt6835_spi_send</code>: ฟังก์ชันนี้ใช้สำหรับการส่งข้อมูลผ่าน SPI โดยใช้คำสั่ง <code>HAL_SPI_Transmit</code> ซึ่งเป็นฟังก์ชันของ STM32 HAL ในการส่งข้อมูลจาก <code>tx_buf</code> (buffer ที่เก็บข้อมูลที่จะส่ง) จำนวน <code>len</code> ไบต์.</p>
+</li>
+<li>
+<p><code>mt6835_spi_recv</code>: ฟังก์ชันนี้ใช้สำหรับการรับข้อมูลผ่าน SPI โดยใช้คำสั่ง <code>HAL_SPI_Receive</code> เพื่อรับข้อมูลจาก SPI และเก็บไว้ใน <code>rx_buf</code> (buffer ที่ใช้รับข้อมูล) จำนวน <code>len</code> ไบต์.</p>
+</li>
+<li>
+<p><code>mt6835_spi_send_recv</code>: ฟังก์ชันนี้จะส่งและรับข้อมูลพร้อมกันในเวลาเดียวกันโดยใช้คำสั่ง <code>HAL_SPI_TransmitReceive_IT</code> ซึ่งเป็นการส่งข้อมูลและรับข้อมูลแบบขนาน (duplex) ผ่าน SPI โดยไม่ต้องรอให้การส่งข้อมูลเสร็จสิ้นก่อน.</p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>การเริ่มต้น SPI (<code>mt6835_stm32_spi_port_init</code>):</p>
+<ul>
+<li>ฟังก์ชันนี้จะสร้างอ็อบเจ็กต์ <code>mt6835_t</code> และเชื่อมโยงฟังก์ชันที่เกี่ยวข้องกับการควบคุม SPI (เช่น <code>mt6835_cs_control</code>, <code>mt6835_spi_send</code>, <code>mt6835_spi_recv</code>, <code>mt6835_spi_send_recv</code>) กับอ็อบเจ็กต์นี้ ซึ่งจะช่วยให้ <code>mt6835</code> สามารถใช้งาน SPI ในการสื่อสารกับอุปกรณ์ได้.</li>
+</ul>
+</li>
+</ul>
+<p>โค้ดนี้เป็นการสร้างไลบรารีสำหรับการใช้งานเซ็นเซอร์ MT6835 ที่ใช้โปรโตคอล SPI (Serial Peripheral Interface) ซึ่งช่วยให้สามารถเชื่อมต่อและควบคุมการทำงานของเซ็นเซอร์ได้ตามคำสั่งที่กำหนดไว้ในไลบรารี มีการใช้ฟังก์ชันต่างๆ เพื่อเชื่อมโยงการส่งและรับข้อมูลกับ SPI, การตรวจสอบ CRC (Cyclic Redundancy Check) เพื่อความถูกต้องของข้อมูล, และการจัดการการตั้งค่าเซ็นเซอร์ เช่น การตั้งค่ามุม (angle) หรือค่าพารามิเตอร์อื่นๆ ในเซ็นเซอร์</p>
+<h2 id="%E0%B9%82%E0%B8%84%E0%B8%A3%E0%B8%87%E0%B8%AA%E0%B8%A3%E0%B9%89%E0%B8%B2%E0%B8%87%E0%B8%AB%E0%B8%A5%E0%B8%B1%E0%B8%81%E0%B8%82%E0%B8%AD%E0%B8%87%E0%B9%82%E0%B8%84%E0%B9%89%E0%B8%94">โครงสร้างหลักของโค้ด:</h2>
+<p>mt6835_cmd_enum_t - ใช้สำหรับการกำหนดคำสั่งที่สามารถใช้กับ MT6835 เช่น การอ่าน/เขียนข้อมูล การตั้งค่า zero หรือโหมดการทำงานต่างๆ
+mt6835_reg_enum_t - กำหนดชื่อของรีจิสเตอร์ในเซ็นเซอร์ MT6835 ซึ่งใช้ในการอ่านหรือเขียนค่า
+mt6835_t - โครงสร้างหลักที่เก็บข้อมูลและฟังก์ชันต่างๆ ที่เกี่ยวข้องกับการควบคุมเซ็นเซอร์ เช่น การส่งคำสั่งไปยังเซ็นเซอร์ การตั้งค่าฟังก์ชัน SPI การตรวจสอบ CRC
+mt6835_create() และ mt6835_destroy() - ฟังก์ชันสำหรับสร้างและทำลายอ็อบเจ็กต์ mt6835
+mt6835_link_spi_xxx() - ฟังก์ชันเชื่อมโยงการควบคุม SPI กับอ็อบเจ็กต์ mt6835
+crc8_table - ตารางสำหรับการคำนวณ CRC เพื่อความถูกต้องของข้อมูลที่รับส่ง</p>
+<h2 id="%E0%B8%81%E0%B8%B2%E0%B8%A3%E0%B8%97%E0%B8%B3%E0%B8%87%E0%B8%B2%E0%B8%99%E0%B8%AB%E0%B8%A5%E0%B8%B1%E0%B8%81">การทำงานหลัก:</h2>
+<p>การสร้างอ็อบเจ็กต์ - ฟังก์ชัน <code>mt6835_create()</code> จะสร้างอ็อบเจ็กต์ mt6835 โดยใช้ฟังก์ชัน malloc สำหรับการจัดการหน่วยความจำ
+การเชื่อมต่อ SPI - ฟังก์ชัน <code>mt6835_link_spi_xxx() </code>ใช้สำหรับเชื่อมโยงการควบคุม SPI โดยการกำหนดฟังก์ชันสำหรับควบคุมการส่งและรับข้อมูลผ่าน SPI
+การตรวจสอบ CRC - เมื่อเปิดการตรวจสอบ CRC (ผ่านฟังก์ชัน <code>mt6835_enable_crc_check()</code> หรือ <code>mt6835_disable_crc_check()</code>), ข้อมูลที่ส่งจะถูกตรวจสอบว่าไม่มีข้อผิดพลาดในการส่ง
+การอ่านข้อมูล - ฟังก์ชันเช่น <code>mt6835_get_raw_angle()</code> ใช้ในการดึงค่ามุมจากเซ็นเซอร์
+การตั้งค่าศูนย์มุม - ฟังก์ชัน <code>mt6835_set_zero_angle()</code> ใช้ในการตั้งค่าศูนย์มุมสำหรับเซ็นเซอร์ MT6835</p>
+<hr>
+<pre class="hljs"><code><div><span class="hljs-comment">/* Includes ------------------------------------------------------------------*/</span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">"main.h"</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">"dma.h"</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">"memorymap.h"</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">"spi.h"</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">"usart.h"</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">"gpio.h"</span></span>
+
+<span class="hljs-comment">/* Private includes ----------------------------------------------------------*/</span>
+<span class="hljs-comment">/* USER CODE BEGIN Includes */</span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">"string.h"</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">"stdio.h"</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">"stdbool.h"</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;stdarg.h&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">"mt6835.h"</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;math.h&gt;</span></span>
+<span class="hljs-comment">/* USER CODE END Includes */</span>
+
+
+<span class="hljs-comment">/* Private function prototypes -----------------------------------------------*/</span>
+<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">SystemClock_Config</span><span class="hljs-params">(<span class="hljs-keyword">void</span>)</span></span>;
+<span class="hljs-comment">/* USER CODE BEGIN PFP */</span>
+<span class="hljs-function"><span class="hljs-keyword">extern</span> <span class="hljs-keyword">mt6835_t</span>* <span class="hljs-title">mt6835_stm32_spi_port_init</span><span class="hljs-params">(<span class="hljs-keyword">void</span>)</span></span>;
+
+<span class="hljs-comment">/* USER CODE END PFP */</span>
+
+<span class="hljs-comment">/* Private user code ---------------------------------------------------------*/</span>
+<span class="hljs-comment">/* USER CODE BEGIN 0 */</span>
+<span class="hljs-keyword">int</span> _write(<span class="hljs-keyword">int</span> file, <span class="hljs-keyword">char</span> *ptr, <span class="hljs-keyword">int</span> len) 
+{
+		<span class="hljs-keyword">if</span> (HAL_UART_Transmit(&amp;huart3, (<span class="hljs-keyword">uint8_t</span>*) ptr, len, HAL_MAX_DELAY)
+			!= HAL_OK) {
+		<span class="hljs-keyword">return</span> <span class="hljs-number">-1</span>; 
+	}
+	<span class="hljs-keyword">return</span> len;  
+}
+<span class="hljs-keyword">uint8_t</span> id;
+<span class="hljs-keyword">uint32_t</span> raw_angle = <span class="hljs-number">0</span>;
+<span class="hljs-keyword">float</span> radian_angle = <span class="hljs-number">0.0f</span>;
+<span class="hljs-comment">/* USER CODE END 0 */</span>
+
+<span class="hljs-comment">/**
+  * @brief  The application entry point.
+  * @retval int
+  */</span>
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">(<span class="hljs-keyword">void</span>)</span>
+</span>{
+
+  <span class="hljs-comment">/* USER CODE BEGIN 1 */</span>
+
+  <span class="hljs-comment">/* USER CODE END 1 */</span>
+
+  <span class="hljs-comment">/* MCU Configuration--------------------------------------------------------*/</span>
+
+  <span class="hljs-comment">/* Reset of all peripherals, Initializes the Flash interface and the Systick. */</span>
+  HAL_Init();
+
+  <span class="hljs-comment">/* USER CODE BEGIN Init */</span>
+
+  <span class="hljs-comment">/* USER CODE END Init */</span>
+
+  <span class="hljs-comment">/* Configure the system clock */</span>
+  SystemClock_Config();
+
+  <span class="hljs-comment">/* USER CODE BEGIN SysInit */</span>
+
+  <span class="hljs-comment">/* USER CODE END SysInit */</span>
+
+  <span class="hljs-comment">/* Initialize all configured peripherals */</span>
+  MX_GPIO_Init();
+  MX_DMA_Init();
+  MX_SPI3_Init();
+  MX_USART3_UART_Init();
+  MX_SPI1_Init();
+  <span class="hljs-comment">/* USER CODE BEGIN 2 */</span>
+
+	<span class="hljs-keyword">mt6835_t</span> *mt6835 = mt6835_stm32_spi_port_init();
+    <span class="hljs-comment">//mt6835_enable_crc_check(mt6835);</span>
+	mt6835_disable_crc_check(mt6835);
+  <span class="hljs-comment">/* USER CODE END 2 */</span>
+
+  <span class="hljs-comment">/* Infinite loop */</span>
+  <span class="hljs-comment">/* USER CODE BEGIN WHILE */</span>
+	<span class="hljs-keyword">while</span> (<span class="hljs-number">1</span>) {
+        raw_angle = mt6835_get_raw_angle(mt6835, MT6835_READ_ANGLE_METHOD_NORMAL);
+        radian_angle = (raw_angle / <span class="hljs-number">2097152.0f</span>) * (M_PI * <span class="hljs-number">2.0f</span>);
+        <span class="hljs-built_in">printf</span>(<span class="hljs-string">"raw_angle: %lu, radian_angle: %f\n\r"</span>, raw_angle, radian_angle);
+		HAL_Delay(<span class="hljs-number">250</span>);
+
+    <span class="hljs-comment">/* USER CODE END WHILE */</span>
+
+    <span class="hljs-comment">/* USER CODE BEGIN 3 */</span>
+	}
+  <span class="hljs-comment">/* USER CODE END 3 */</span>
+}
+
+</div></code></pre>
+<h2 id="1-%E0%B8%81%E0%B8%B2%E0%B8%A3%E0%B8%99%E0%B8%B3%E0%B9%80%E0%B8%82%E0%B9%89%E0%B8%B2%E0%B9%84%E0%B8%A5%E0%B8%9A%E0%B8%A3%E0%B8%B2%E0%B8%A3%E0%B8%B5%E0%B9%81%E0%B8%A5%E0%B8%B0%E0%B8%81%E0%B8%B2%E0%B8%A3%E0%B8%81%E0%B8%B3%E0%B8%AB%E0%B8%99%E0%B8%94%E0%B8%84%E0%B9%88%E0%B8%B2">1. การนำเข้าไลบรารีและการกำหนดค่า</h2>
+<pre class="hljs"><code><div><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">"main.h"</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">"dma.h"</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">"memorymap.h"</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">"spi.h"</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">"usart.h"</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">"gpio.h"</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">"string.h"</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">"stdio.h"</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">"stdbool.h"</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;stdarg.h&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">"mt6835.h"</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;math.h&gt;</span></span>
+</div></code></pre>
+<ul>
+<li>นำเข้าไลบรารีมาตรฐานของ STM32 และไลบรารีที่เกี่ยวข้องกับ SPI, UART, GPIO</li>
+<li><code>mt6835.h</code> เป็นไลบรารีที่ใช้ในการติดต่อกับเซ็นเซอร์ MT6835</li>
+<li>ใช้ <code>math.h</code> เนื่องจากมีการคำนวณค่ามุมในหน่วยเรเดียน</li>
+</ul>
+<h2 id="2-%E0%B8%9F%E0%B8%B1%E0%B8%87%E0%B8%81%E0%B9%8C%E0%B8%8A%E0%B8%B1%E0%B8%99-write-%E0%B9%83%E0%B8%8A%E0%B9%89%E0%B8%81%E0%B8%B1%E0%B8%9A-printf">2. ฟังก์ชัน <code>_write</code> (ใช้กับ <code>printf</code>)</h2>
+<pre class="hljs"><code><div><span class="hljs-keyword">int</span> _write(<span class="hljs-keyword">int</span> file, <span class="hljs-keyword">char</span> *ptr, <span class="hljs-keyword">int</span> len) 
+{
+	<span class="hljs-keyword">if</span> (HAL_UART_Transmit(&amp;huart3, (<span class="hljs-keyword">uint8_t</span>*) ptr, len, HAL_MAX_DELAY) != HAL_OK) {
+		<span class="hljs-keyword">return</span> <span class="hljs-number">-1</span>; 
+	}
+	<span class="hljs-keyword">return</span> len;  
+}
+</div></code></pre>
+<ul>
+<li>ฟังก์ชันนี้ทำให้ <code>printf()</code> สามารถใช้กับ UART3 ได้ โดยส่งข้อมูลผ่าน <code>HAL_UART_Transmit()</code></li>
+<li>ใช้ <code>HAL_MAX_DELAY</code> เพื่อรอให้การส่งข้อมูลเสร็จสมบูรณ์</li>
+</ul>
+<h2 id="3-%E0%B8%95%E0%B8%B1%E0%B8%A7%E0%B9%81%E0%B8%9B%E0%B8%A3%E0%B8%97%E0%B8%B5%E0%B9%88%E0%B9%83%E0%B8%8A%E0%B9%89">3. ตัวแปรที่ใช้</h2>
+<pre class="hljs"><code><div><span class="hljs-keyword">uint8_t</span> id;
+<span class="hljs-keyword">uint32_t</span> raw_angle = <span class="hljs-number">0</span>;
+<span class="hljs-keyword">float</span> radian_angle = <span class="hljs-number">0.0f</span>;
+</div></code></pre>
+<ul>
+<li><code>raw_angle</code> เก็บค่ามุมที่อ่านจากเซ็นเซอร์ในรูปของ ค่าดิบ (Raw Value)</li>
+<li><code>radian_angle</code> ใช้เก็บค่ามุมที่แปลงเป็นเรเดียน</li>
+</ul>
+<h2 id="4-%E0%B8%81%E0%B8%B2%E0%B8%A3%E0%B9%80%E0%B8%A3%E0%B8%B4%E0%B9%88%E0%B8%A1%E0%B8%95%E0%B9%89%E0%B8%99%E0%B8%A3%E0%B8%B0%E0%B8%9A%E0%B8%9A%E0%B9%81%E0%B8%A5%E0%B8%B0%E0%B8%AD%E0%B8%B8%E0%B8%9B%E0%B8%81%E0%B8%A3%E0%B8%93%E0%B9%8C%E0%B8%95%E0%B9%88%E0%B8%AD%E0%B8%9E%E0%B9%88%E0%B8%A7%E0%B8%87">4. การเริ่มต้นระบบและอุปกรณ์ต่อพ่วง</h2>
+<pre class="hljs"><code><div>HAL_Init();
+SystemClock_Config();
+MX_GPIO_Init();
+MX_DMA_Init();
+MX_SPI3_Init();
+MX_USART3_UART_Init();
+MX_SPI1_Init();
+</div></code></pre>
+<ul>
+<li><code>HAL_Init()</code> เป็นฟังก์ชันเริ่มต้นระบบ HAL (Hardware Abstraction Layer)</li>
+<li><code>SystemClock_Config()</code> กำหนดค่า Clock ให้กับ MCU</li>
+<li><code>MX_GPIO_Init()</code>,<code> MX_DMA_Init()</code>, <code>MX_SPI3_Init()</code>, <code>MX_USART3_UART_Init()</code>, <code>MX_SPI1_Init()</code> เป็นฟังก์ชันที่ใช้กำหนดค่าอุปกรณ์ต่อพ่วงต่างๆ เช่น GPIO, DMA, SPI, UART</li>
+</ul>
+<h2 id="5-%E0%B8%81%E0%B8%B2%E0%B8%A3%E0%B8%81%E0%B8%B3%E0%B8%AB%E0%B8%99%E0%B8%94%E0%B8%84%E0%B9%88%E0%B8%B2%E0%B9%81%E0%B8%A5%E0%B8%B0%E0%B8%9B%E0%B8%B4%E0%B8%94-crc-check">5. การกำหนดค่าและปิด CRC Check</h2>
+<pre class="hljs"><code><div><span class="hljs-keyword">mt6835_t</span> *mt6835 = mt6835_stm32_spi_port_init();
+<span class="hljs-comment">// mt6835_enable_crc_check(mt6835);</span>
+mt6835_disable_crc_check(mt6835);
+</div></code></pre>
+<ul>
+<li>ใช้ <code>mt6835_stm32_spi_port_init()</code> เพื่อกำหนดค่าเซ็นเซอร์ MT6835</li>
+<li>ปิด CRC Check (<code>mt6835_disable_crc_check()</code>) เพื่อให้อ่านค่ามุมโดยไม่ต้องตรวจสอบ CRC</li>
+</ul>
+<h2 id="6-%E0%B8%81%E0%B8%B2%E0%B8%A3%E0%B8%97%E0%B8%B3%E0%B8%87%E0%B8%B2%E0%B8%99%E0%B8%AB%E0%B8%A5%E0%B8%B1%E0%B8%81%E0%B9%83%E0%B8%99-loop">6. การทำงานหลักใน Loop</h2>
+<pre class="hljs"><code><div><span class="hljs-keyword">while</span> (<span class="hljs-number">1</span>) {
+    raw_angle = mt6835_get_raw_angle(mt6835, MT6835_READ_ANGLE_METHOD_NORMAL);
+    radian_angle = (raw_angle / <span class="hljs-number">2097152.0f</span>) * (M_PI * <span class="hljs-number">2.0f</span>);
+    <span class="hljs-built_in">printf</span>(<span class="hljs-string">"raw_angle: %lu, radian_angle: %f\n\r"</span>, raw_angle, radian_angle);
+    HAL_Delay(<span class="hljs-number">250</span>);
+}
+</div></code></pre>
+<ul>
+<li>
+<p>อ่านค่ามุมแบบ Raw จากเซ็นเซอร์ <code>mt6835_get_raw_angle()</code></p>
+</li>
+<li>
+<p>แปลงค่าที่อ่านได้ให้เป็นเรเดียน:
+radian_angle=(raw_angle/2097152.0)×2𝜋</p>
+<ul>
+<li>2097152 คือค่ามุมเต็มสเกลของเซ็นเซอร์ (21-bit resolution)</li>
+<li><code>M_PI * 2.0f</code> ใช้แปลงเป็นเรเดียน (1 รอบ = 2π เรเดียน)</li>
+</ul>
+</li>
+<li>
+<p>ส่งค่ามุมที่อ่านได้ออกทาง UART โดยใช้ printf()</p>
+</li>
+<li>
+<p>หน่วงเวลา 250ms ก่อนอ่านค่าใหม่</p>
+</li>
+</ul>
+<h2 id="%E0%B8%9C%E0%B8%A5%E0%B8%A5%E0%B8%B1%E0%B8%9E%E0%B8%98%E0%B9%8C%E0%B8%97%E0%B8%B5%E0%B9%88%E0%B8%84%E0%B8%B2%E0%B8%94%E0%B8%AB%E0%B8%A7%E0%B8%B1%E0%B8%87-%E0%B8%95%E0%B8%B1%E0%B8%A7%E0%B8%AD%E0%B8%A2%E0%B9%88%E0%B8%B2%E0%B8%87-output-%E0%B8%97%E0%B8%B2%E0%B8%87-uart">ผลลัพธ์ที่คาดหวัง (ตัวอย่าง Output ทาง UART):</h2>
+<pre class="hljs"><code><div><span class="hljs-attr">raw_angle:</span> <span class="hljs-number">1048576</span><span class="hljs-string">,</span> <span class="hljs-attr">radian_angle:</span> <span class="hljs-number">3.141593</span>
+<span class="hljs-attr">raw_angle:</span> <span class="hljs-number">2097152</span><span class="hljs-string">,</span> <span class="hljs-attr">radian_angle:</span> <span class="hljs-number">6.283185</span>
+<span class="hljs-attr">raw_angle:</span> <span class="hljs-number">524288</span><span class="hljs-string">,</span> <span class="hljs-attr">radian_angle:</span> <span class="hljs-number">1.570796</span>
+</div></code></pre>
+
+</body>
+</html>

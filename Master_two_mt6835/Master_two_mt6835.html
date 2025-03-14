@@ -1,0 +1,562 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Master_two_mt6835.md</title>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+
+<style>
+/* https://github.com/microsoft/vscode/blob/master/extensions/markdown-language-features/media/markdown.css */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+body {
+	font-family: var(--vscode-markdown-font-family, -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif);
+	font-size: var(--vscode-markdown-font-size, 14px);
+	padding: 0 26px;
+	line-height: var(--vscode-markdown-line-height, 22px);
+	word-wrap: break-word;
+}
+
+#code-csp-warning {
+	position: fixed;
+	top: 0;
+	right: 0;
+	color: white;
+	margin: 16px;
+	text-align: center;
+	font-size: 12px;
+	font-family: sans-serif;
+	background-color:#444444;
+	cursor: pointer;
+	padding: 6px;
+	box-shadow: 1px 1px 1px rgba(0,0,0,.25);
+}
+
+#code-csp-warning:hover {
+	text-decoration: none;
+	background-color:#007acc;
+	box-shadow: 2px 2px 2px rgba(0,0,0,.25);
+}
+
+body.scrollBeyondLastLine {
+	margin-bottom: calc(100vh - 22px);
+}
+
+body.showEditorSelection .code-line {
+	position: relative;
+}
+
+body.showEditorSelection .code-active-line:before,
+body.showEditorSelection .code-line:hover:before {
+	content: "";
+	display: block;
+	position: absolute;
+	top: 0;
+	left: -12px;
+	height: 100%;
+}
+
+body.showEditorSelection li.code-active-line:before,
+body.showEditorSelection li.code-line:hover:before {
+	left: -30px;
+}
+
+.vscode-light.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.15);
+}
+
+.vscode-light.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.40);
+}
+
+.vscode-light.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-dark.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.4);
+}
+
+.vscode-dark.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.60);
+}
+
+.vscode-dark.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-high-contrast.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 160, 0, 0.7);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 160, 0, 1);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+img {
+	max-width: 100%;
+	max-height: 100%;
+}
+
+a {
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+a:focus,
+input:focus,
+select:focus,
+textarea:focus {
+	outline: 1px solid -webkit-focus-ring-color;
+	outline-offset: -1px;
+}
+
+hr {
+	border: 0;
+	height: 2px;
+	border-bottom: 2px solid;
+}
+
+h1 {
+	padding-bottom: 0.3em;
+	line-height: 1.2;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+}
+
+h1, h2, h3 {
+	font-weight: normal;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+table > thead > tr > th {
+	text-align: left;
+	border-bottom: 1px solid;
+}
+
+table > thead > tr > th,
+table > thead > tr > td,
+table > tbody > tr > th,
+table > tbody > tr > td {
+	padding: 5px 10px;
+}
+
+table > tbody > tr + tr > td {
+	border-top: 1px solid;
+}
+
+blockquote {
+	margin: 0 7px 0 5px;
+	padding: 0 16px 0 10px;
+	border-left-width: 5px;
+	border-left-style: solid;
+}
+
+code {
+	font-family: Menlo, Monaco, Consolas, "Droid Sans Mono", "Courier New", monospace, "Droid Sans Fallback";
+	font-size: 1em;
+	line-height: 1.357em;
+}
+
+body.wordWrap pre {
+	white-space: pre-wrap;
+}
+
+pre:not(.hljs),
+pre.hljs code > div {
+	padding: 16px;
+	border-radius: 3px;
+	overflow: auto;
+}
+
+pre code {
+	color: var(--vscode-editor-foreground);
+	tab-size: 4;
+}
+
+/** Theming */
+
+.vscode-light pre {
+	background-color: rgba(220, 220, 220, 0.4);
+}
+
+.vscode-dark pre {
+	background-color: rgba(10, 10, 10, 0.4);
+}
+
+.vscode-high-contrast pre {
+	background-color: rgb(0, 0, 0);
+}
+
+.vscode-high-contrast h1 {
+	border-color: rgb(0, 0, 0);
+}
+
+.vscode-light table > thead > tr > th {
+	border-color: rgba(0, 0, 0, 0.69);
+}
+
+.vscode-dark table > thead > tr > th {
+	border-color: rgba(255, 255, 255, 0.69);
+}
+
+.vscode-light h1,
+.vscode-light hr,
+.vscode-light table > tbody > tr + tr > td {
+	border-color: rgba(0, 0, 0, 0.18);
+}
+
+.vscode-dark h1,
+.vscode-dark hr,
+.vscode-dark table > tbody > tr + tr > td {
+	border-color: rgba(255, 255, 255, 0.18);
+}
+
+</style>
+
+<style>
+/* Tomorrow Theme */
+/* http://jmblog.github.com/color-themes-for-google-code-highlightjs */
+/* Original theme - https://github.com/chriskempson/tomorrow-theme */
+
+/* Tomorrow Comment */
+.hljs-comment,
+.hljs-quote {
+	color: #8e908c;
+}
+
+/* Tomorrow Red */
+.hljs-variable,
+.hljs-template-variable,
+.hljs-tag,
+.hljs-name,
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-regexp,
+.hljs-deletion {
+	color: #c82829;
+}
+
+/* Tomorrow Orange */
+.hljs-number,
+.hljs-built_in,
+.hljs-builtin-name,
+.hljs-literal,
+.hljs-type,
+.hljs-params,
+.hljs-meta,
+.hljs-link {
+	color: #f5871f;
+}
+
+/* Tomorrow Yellow */
+.hljs-attribute {
+	color: #eab700;
+}
+
+/* Tomorrow Green */
+.hljs-string,
+.hljs-symbol,
+.hljs-bullet,
+.hljs-addition {
+	color: #718c00;
+}
+
+/* Tomorrow Blue */
+.hljs-title,
+.hljs-section {
+	color: #4271ae;
+}
+
+/* Tomorrow Purple */
+.hljs-keyword,
+.hljs-selector-tag {
+	color: #8959a8;
+}
+
+.hljs {
+	display: block;
+	overflow-x: auto;
+	color: #4d4d4c;
+	padding: 0.5em;
+}
+
+.hljs-emphasis {
+	font-style: italic;
+}
+
+.hljs-strong {
+	font-weight: bold;
+}
+</style>
+
+<style>
+/*
+ * Markdown PDF CSS
+ */
+
+ body {
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif, "Meiryo";
+	padding: 0 12px;
+}
+
+pre {
+	background-color: #f8f8f8;
+	border: 1px solid #cccccc;
+	border-radius: 3px;
+	overflow-x: auto;
+	white-space: pre-wrap;
+	overflow-wrap: break-word;
+}
+
+pre:not(.hljs) {
+	padding: 23px;
+	line-height: 19px;
+}
+
+blockquote {
+	background: rgba(127, 127, 127, 0.1);
+	border-color: rgba(0, 122, 204, 0.5);
+}
+
+.emoji {
+	height: 1.4em;
+}
+
+code {
+	font-size: 14px;
+	line-height: 19px;
+}
+
+/* for inline code */
+:not(pre):not(.hljs) > code {
+	color: #C9AE75; /* Change the old color so it seems less like an error */
+	font-size: inherit;
+}
+
+/* Page Break : use <div class="page"/> to insert page break
+-------------------------------------------------------- */
+.page {
+	page-break-after: always;
+}
+
+</style>
+
+<script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+</head>
+<body>
+  <script>
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: document.body.classList.contains('vscode-dark') || document.body.classList.contains('vscode-high-contrast')
+          ? 'dark'
+          : 'default'
+    });
+  </script>
+<h1 id="mt6835-%E0%B9%83%E0%B8%8A%E0%B9%89%E0%B8%87%E0%B8%B2%E0%B8%99%E0%B8%A3%E0%B9%88%E0%B8%A7%E0%B8%A1%E0%B8%81%E0%B8%B1%E0%B8%9A-stm32h723-nucleo">MT6835 ใช้งานร่วมกับ STM32H723 Nucleo</h1>
+<p>ใช้งานไลบราลี่</p>
+<table>
+<thead>
+<tr>
+<th>.h</th>
+<th>.c</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>mt6835.h</td>
+<td>mt6835.c</td>
+</tr>
+</tbody>
+</table>
+<h2 id="1-%E0%B8%AA%E0%B9%88%E0%B8%A7%E0%B8%99-header-%E0%B9%81%E0%B8%A5%E0%B8%B0%E0%B8%81%E0%B8%B2%E0%B8%A3-include-%E0%B9%84%E0%B8%9F%E0%B8%A5%E0%B9%8C">1. ส่วน Header และการ Include ไฟล์</h2>
+<pre class="hljs"><code><div><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">"main.h"</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">"memorymap.h"</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">"spi.h"</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">"usart.h"</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">"gpio.h"</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">"mt6835.h"</span> </span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">"string.h"</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">"stdio.h"</span></span>
+</div></code></pre>
+<ul>
+<li>นำเข้าไลบรารีที่จำเป็นสำหรับ STM32</li>
+<li>mt6835.h เป็นไลบรารีของเซ็นเซอร์ MT6835</li>
+</ul>
+<h2 id="2-%E0%B8%81%E0%B8%B2%E0%B8%A3%E0%B8%95%E0%B8%B1%E0%B9%89%E0%B8%87%E0%B8%84%E0%B9%88%E0%B8%B2%E0%B8%81%E0%B8%B2%E0%B8%A3%E0%B8%AA%E0%B9%88%E0%B8%87%E0%B8%82%E0%B9%89%E0%B8%AD%E0%B8%A1%E0%B8%B9%E0%B8%A5%E0%B8%9C%E0%B9%88%E0%B8%B2%E0%B8%99-uart">2. การตั้งค่าการส่งข้อมูลผ่าน UART</h2>
+<pre class="hljs"><code><div><span class="hljs-keyword">int</span> _write(<span class="hljs-keyword">int</span> file, <span class="hljs-keyword">char</span> *ptr, <span class="hljs-keyword">int</span> len) {
+	HAL_UART_Transmit(&amp;huart3, (<span class="hljs-keyword">uint8_t</span>*) ptr, len, HAL_MAX_DELAY);
+	<span class="hljs-keyword">return</span> len;
+}
+</div></code></pre>
+<ul>
+<li>ฟังก์ชัน _write ถูกใช้เพื่อช่วยให้ printf สามารถส่งข้อมูลออกทาง UART3 ได้</li>
+</ul>
+<h2 id="3-%E0%B8%81%E0%B8%B2%E0%B8%A3%E0%B8%81%E0%B8%B3%E0%B8%AB%E0%B8%99%E0%B8%94%E0%B8%82%E0%B8%B2-cs-chip-select-%E0%B8%AA%E0%B8%B3%E0%B8%AB%E0%B8%A3%E0%B8%B1%E0%B8%9A-spi">3. การกำหนดขา CS (Chip Select) สำหรับ SPI</h2>
+<pre class="hljs"><code><div><span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> SPI_INSTANCE    hspi3</span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> SPI_M1_CS       SPI3_M1_Pin  </span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> SPI_M1_CS_PORT  SPI3_M1_GPIO_Port  </span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> SPI_M2_CS       SPI3_M2_Pin  </span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> SPI_M2_CS_PORT  SPI3_M2_GPIO_Port  </span>
+</div></code></pre>
+<ul>
+<li>กำหนดตัวแปรสำหรับใช้ SPI3</li>
+<li>กำหนดขา CS สำหรับเซ็นเซอร์ตัวที่ 1 (SPI_M1_CS) และเซ็นเซอร์ตัวที่ 2 (SPI_M2_CS)</li>
+</ul>
+<h2 id="4-%E0%B8%9F%E0%B8%B1%E0%B8%87%E0%B8%81%E0%B9%8C%E0%B8%8A%E0%B8%B1%E0%B8%99%E0%B8%84%E0%B8%A7%E0%B8%9A%E0%B8%84%E0%B8%B8%E0%B8%A1%E0%B8%82%E0%B8%B2-cs-%E0%B8%82%E0%B8%AD%E0%B8%87%E0%B9%80%E0%B8%8B%E0%B9%87%E0%B8%99%E0%B9%80%E0%B8%8B%E0%B8%AD%E0%B8%A3%E0%B9%8C">4. ฟังก์ชันควบคุมขา CS ของเซ็นเซอร์</h2>
+<pre class="hljs"><code><div><span class="hljs-function"><span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">mt6835_cs_control</span><span class="hljs-params">(<span class="hljs-keyword">mt6835_cs_state_enum_t</span> state)</span> </span>{
+	<span class="hljs-keyword">if</span> (state == MT6835_CS_HIGH) {
+		HAL_GPIO_WritePin(SPI_M1_CS_PORT, SPI_M1_CS, GPIO_PIN_SET);
+	} <span class="hljs-keyword">else</span> {
+		HAL_GPIO_WritePin(SPI_M1_CS_PORT, SPI_M1_CS, GPIO_PIN_RESET);
+	}
+}
+<span class="hljs-function"><span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">mt6835_cs2_control</span><span class="hljs-params">(<span class="hljs-keyword">mt6835_cs_state_enum_t</span> state)</span> </span>{
+	<span class="hljs-keyword">if</span> (state == MT6835_CS_HIGH) {
+		HAL_GPIO_WritePin(SPI_M2_CS_PORT, SPI_M2_CS, GPIO_PIN_SET);
+	} <span class="hljs-keyword">else</span> {
+		HAL_GPIO_WritePin(SPI_M2_CS_PORT, SPI_M2_CS, GPIO_PIN_RESET);
+	}
+}
+</div></code></pre>
+<ul>
+<li>ฟังก์ชัน mt6835_cs_control และ mt6835_cs2_control ใช้ควบคุมขา CS ของเซ็นเซอร์แต่ละตัว</li>
+</ul>
+<pre class="hljs"><code><div><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">mt6835_link_spi_cs2_control</span><span class="hljs-params">(<span class="hljs-keyword">mt6835_t</span> *mt6835, <span class="hljs-keyword">void</span> (*spi_cs_control)(<span class="hljs-keyword">mt6835_cs_state_enum_t</span> state))</span> </span>{
+    <span class="hljs-keyword">if</span> (mt6835 == <span class="hljs-literal">NULL</span>) {
+        MT6835_DEBUG(<span class="hljs-string">"%s mt6835 object is null"</span>, TAG);
+        <span class="hljs-keyword">return</span>;
+    }
+    <span class="hljs-keyword">if</span> (spi_cs_control == <span class="hljs-literal">NULL</span>) {
+        MT6835_DEBUG(<span class="hljs-string">"%s mt6835 object use default spi_cs_control(null)"</span>, TAG);
+        mt6835-&gt;func.spi_cs_control = mt6835_cs2_control;
+    } <span class="hljs-keyword">else</span> {
+        mt6835-&gt;func.spi_cs_control = spi_cs_control;
+    }
+}
+</div></code></pre>
+<ul>
+<li>เพิ่มฟังก์ชันคุมขา CS ใน mt6385.c</li>
+</ul>
+<h2 id="5-%E0%B8%9F%E0%B8%B1%E0%B8%87%E0%B8%81%E0%B9%8C%E0%B8%8A%E0%B8%B1%E0%B8%99%E0%B8%AA%E0%B9%88%E0%B8%87%E0%B9%81%E0%B8%A5%E0%B8%B0%E0%B8%A3%E0%B8%B1%E0%B8%9A%E0%B8%82%E0%B9%89%E0%B8%AD%E0%B8%A1%E0%B8%B9%E0%B8%A5%E0%B8%9C%E0%B9%88%E0%B8%B2%E0%B8%99-spi">5. ฟังก์ชันส่งและรับข้อมูลผ่าน SPI</h2>
+<pre class="hljs"><code><div>
+<span class="hljs-function"><span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">mt6835_spi_send_recv</span><span class="hljs-params">(<span class="hljs-keyword">uint8_t</span> *tx_buf, <span class="hljs-keyword">uint8_t</span> *rx_buf, <span class="hljs-keyword">uint8_t</span> len)</span> </span>{
+	HAL_StatusTypeDef status = HAL_OK;
+	status = HAL_SPI_TransmitReceive_IT(&amp;SPI_INSTANCE, tx_buf, rx_buf, len);
+	<span class="hljs-keyword">if</span> (status != HAL_OK) {
+		<span class="hljs-built_in">printf</span>(<span class="hljs-string">"spi send_recv failed %d\n\r"</span>, status);
+		<span class="hljs-keyword">return</span>;
+	}
+	<span class="hljs-keyword">uint32_t</span> tickstart = HAL_GetTick();
+	<span class="hljs-keyword">while</span> (HAL_SPI_GetState(&amp;SPI_INSTANCE) != HAL_SPI_STATE_READY) {
+		<span class="hljs-keyword">if</span> (HAL_GetTick() - tickstart &gt; <span class="hljs-number">1</span>) {
+			<span class="hljs-built_in">printf</span>(<span class="hljs-string">"spi send_recv timeout\n\r"</span>);
+			<span class="hljs-keyword">return</span>;
+		}
+	}
+}
+</div></code></pre>
+<ul>
+<li>ใช้ HAL_SPI_TransmitReceive_IT เพื่อส่งและรับข้อมูลผ่าน SPI</li>
+<li>ตรวจสอบว่าการรับ-ส่งสำเร็จหรือไม่ ถ้าไม่สำเร็จจะแสดงข้อความ error</li>
+</ul>
+<h2 id="6-%E0%B8%81%E0%B8%B2%E0%B8%A3%E0%B8%81%E0%B8%B3%E0%B8%AB%E0%B8%99%E0%B8%94%E0%B8%95%E0%B8%B1%E0%B8%A7%E0%B9%81%E0%B8%9B%E0%B8%A3%E0%B8%AA%E0%B8%B3%E0%B8%AB%E0%B8%A3%E0%B8%B1%E0%B8%9A%E0%B8%A1%E0%B8%B8%E0%B8%A1%E0%B8%AB%E0%B8%A1%E0%B8%B8%E0%B8%99">6. การกำหนดตัวแปรสำหรับมุมหมุน</h2>
+<pre class="hljs"><code><div><span class="hljs-keyword">uint32_t</span> raw_angle_1 = <span class="hljs-number">0</span>, raw_angle_2 = <span class="hljs-number">0</span>;
+<span class="hljs-keyword">float</span> radian_angle_1 = <span class="hljs-number">0.0f</span>, radian_angle_2 = <span class="hljs-number">0.0f</span>;
+<span class="hljs-keyword">float</span> degree_angle_1 = <span class="hljs-number">0.0f</span>, degree_angle_2 = <span class="hljs-number">0.0f</span>;
+<span class="hljs-keyword">uint8_t</span> id_1, id_2;
+</div></code></pre>
+<ul>
+<li>ตัวแปร raw_angle_X เก็บค่ามุมดิบจากเซ็นเซอร์</li>
+<li>ตัวแปร radian_angle_X และ degree_angle_X ใช้เก็บค่ามุมในหน่วยเรเดียนและองศา</li>
+</ul>
+<h2 id="7-%E0%B8%81%E0%B8%B2%E0%B8%A3%E0%B9%80%E0%B8%A3%E0%B8%B4%E0%B9%88%E0%B8%A1%E0%B8%95%E0%B9%89%E0%B8%99%E0%B8%97%E0%B8%B3%E0%B8%87%E0%B8%B2%E0%B8%99%E0%B8%82%E0%B8%AD%E0%B8%87-stm32-%E0%B9%83%E0%B8%99-main">7. การเริ่มต้นทำงานของ STM32 ใน main()</h2>
+<pre class="hljs"><code><div>HAL_Init();
+SystemClock_Config();
+MX_GPIO_Init();
+MX_SPI3_Init();
+MX_USART3_UART_Init();
+</div></code></pre>
+<ul>
+<li>HAL_Init() -&gt; รีเซ็ตฮาร์ดแวร์และเปิดใช้งาน HAL</li>
+<li>SystemClock_Config() -&gt; ตั้งค่านาฬิกาของระบบ</li>
+<li>MX_GPIO_Init(), MX_SPI3_Init(), MX_USART3_UART_Init() -&gt; ตั้งค่า GPIO, SPI3 และ UART3</li>
+</ul>
+<h2 id="8-%E0%B8%81%E0%B8%B2%E0%B8%A3%E0%B8%AA%E0%B8%A3%E0%B9%89%E0%B8%B2%E0%B8%87%E0%B9%81%E0%B8%A5%E0%B8%B0%E0%B8%95%E0%B8%B1%E0%B9%89%E0%B8%87%E0%B8%84%E0%B9%88%E0%B8%B2%E0%B9%80%E0%B8%8B%E0%B9%87%E0%B8%99%E0%B9%80%E0%B8%8B%E0%B8%AD%E0%B8%A3%E0%B9%8C-mt6835">8. การสร้างและตั้งค่าเซ็นเซอร์ MT6835</h2>
+<pre class="hljs"><code><div><span class="hljs-keyword">mt6835_t</span> *mt6835_1;
+<span class="hljs-keyword">mt6835_t</span> *mt6835_2;
+mt6835_1 = mt6835_create();
+mt6835_2 = mt6835_create();
+
+mt6835_link_spi_cs_control(mt6835_1, mt6835_cs_control);
+mt6835_link_spi_cs_control(mt6835_2, mt6835_cs2_control);
+
+mt6835_link_spi_send_recv(mt6835_1, mt6835_spi_send_recv);
+mt6835_link_spi_send_recv(mt6835_2, mt6835_spi_send_recv);
+
+mt6835_enable_crc_check(mt6835_1);
+mt6835_enable_crc_check(mt6835_2);
+</div></code></pre>
+<ul>
+<li>สร้างอินสแตนซ์ของเซ็นเซอร์ mt6835_1 และ mt6835_2</li>
+<li>เชื่อมโยงฟังก์ชันควบคุม CS และ SPI กับเซ็นเซอร์แต่ละตัว</li>
+<li>เปิดใช้งาน CRC Check เพื่อป้องกันข้อผิดพลาด</li>
+</ul>
+<h2 id="9-%E0%B8%81%E0%B8%B2%E0%B8%A3%E0%B8%AD%E0%B9%88%E0%B8%B2%E0%B8%99%E0%B8%84%E0%B9%88%E0%B8%B2%E0%B8%A1%E0%B8%B8%E0%B8%A1%E0%B8%88%E0%B8%B2%E0%B8%81%E0%B9%80%E0%B8%8B%E0%B9%87%E0%B8%99%E0%B9%80%E0%B8%8B%E0%B8%AD%E0%B8%A3%E0%B9%8C%E0%B9%83%E0%B8%99%E0%B8%A5%E0%B8%B9%E0%B8%9B">9. การอ่านค่ามุมจากเซ็นเซอร์ในลูป</h2>
+<pre class="hljs"><code><div><span class="hljs-keyword">while</span> (<span class="hljs-number">1</span>) {
+	raw_angle_1 = mt6835_get_raw_angle(mt6835_1,MT6835_READ_ANGLE_METHOD_NORMAL);
+	radian_angle_1 = raw_angle_1 * (M_PI * <span class="hljs-number">2.0f</span>) / MT6835_ANGLE_RESOLUTION;
+	degree_angle_1 = raw_angle_1 * (<span class="hljs-number">360.0f</span> / MT6835_ANGLE_RESOLUTION);
+
+	raw_angle_2 = mt6835_get_raw_angle(mt6835_2,MT6835_READ_ANGLE_METHOD_NORMAL);
+	radian_angle_2 = raw_angle_2 * (M_PI * <span class="hljs-number">2.0f</span>) / MT6835_ANGLE_RESOLUTION;
+	degree_angle_2 = raw_angle_2 * (<span class="hljs-number">360.0f</span> / MT6835_ANGLE_RESOLUTION);
+</div></code></pre>
+<ul>
+<li>อ่านค่ามุมดิบจากเซ็นเซอร์</li>
+<li>แปลงค่ามุมเป็น เรเดียน และ องศา</li>
+</ul>
+<h2 id="10-%E0%B8%95%E0%B8%A3%E0%B8%A7%E0%B8%88%E0%B8%AA%E0%B8%AD%E0%B8%9A%E0%B8%84%E0%B8%A7%E0%B8%B2%E0%B8%A1%E0%B8%96%E0%B8%B9%E0%B8%81%E0%B8%95%E0%B9%89%E0%B8%AD%E0%B8%87%E0%B8%82%E0%B8%AD%E0%B8%87%E0%B8%82%E0%B9%89%E0%B8%AD%E0%B8%A1%E0%B8%B9%E0%B8%A5">10. ตรวจสอบความถูกต้องของข้อมูล</h2>
+<pre class="hljs"><code><div><span class="hljs-keyword">if</span> (!mt6835_1-&gt;crc_res) {
+	<span class="hljs-built_in">printf</span>(<span class="hljs-string">"CRC error on MT6835 1\n\r"</span>);
+}
+<span class="hljs-keyword">if</span> (!mt6835_2-&gt;crc_res) {
+	<span class="hljs-built_in">printf</span>(<span class="hljs-string">"CRC error on MT6835 2\n\r"</span>);
+}
+</div></code></pre>
+<ul>
+<li>ตรวจสอบว่า CRC ของเซ็นเซอร์ถูกต้องหรือไม่</li>
+</ul>
+<h2 id="11-%E0%B9%81%E0%B8%AA%E0%B8%94%E0%B8%87%E0%B8%9C%E0%B8%A5%E0%B8%82%E0%B9%89%E0%B8%AD%E0%B8%A1%E0%B8%B9%E0%B8%A5%E0%B8%9C%E0%B9%88%E0%B8%B2%E0%B8%99-uart">11. แสดงผลข้อมูลผ่าน UART</h2>
+<pre class="hljs"><code><div><span class="hljs-built_in">printf</span>(<span class="hljs-string">"Raw Angle 1: %lu, Radian 1: %f, degree_angle1: %.2f deg\n\r"</span>,
+	raw_angle_1, radian_angle_1, degree_angle_1);
+<span class="hljs-built_in">printf</span>(<span class="hljs-string">"Raw Angle 2: %lu, Radian 2: %f, degree_angle2: %.2f deg\n\r"</span>,
+	raw_angle_2, radian_angle_2, degree_angle_2);
+HAL_Delay(<span class="hljs-number">500</span>);
+</div></code></pre>
+<ul>
+<li>ส่งค่ามุมที่อ่านได้ออกทาง UART</li>
+<li>ใช้ HAL_Delay(500) เพื่อรอ 500 มิลลิวินาที</li>
+</ul>
+<h2 id="%E0%B8%AA%E0%B8%A3%E0%B8%B8%E0%B8%9B">สรุป</h2>
+<ul>
+<li>ใช้ SPI3 ติดต่อกับเซ็นเซอร์ MT6835</li>
+<li>อ่านค่ามุมจากเซ็นเซอร์ 2 ตัว</li>
+<li>แปลงค่าเป็นเรเดียนและองศา</li>
+<li>แสดงผลออกทาง UART3</li>
+</ul>
+
+</body>
+</html>
